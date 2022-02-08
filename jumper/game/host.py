@@ -19,30 +19,31 @@ Methods/purpose
         self._wordlist_of_words = []
         self.player = Player()
         self.drawing = Drawing()
-        self.word = Word()
+        self.word = Word("")
 
     def create_wordList(self):
-        self._wordlist_of_words = ['developement', 'python', 'hilo', 'arguments', 'program']
+        self._wordlist_of_words = [Word('developement'), Word('python'), Word('hilo'), Word('arguments'), Word('program')]
         return random.choice(self._wordlist_of_words)
+
     def play_game(self):
         #print(self.word.show_hidden_word(self.create_wordList()))
-        cont = 0
-        word = self.word.show_hidden_word(self.create_wordList())
-        while cont <= 8:    
-            letter = self.word.check_guess(self.player.guess())
-            letter_show = []
-            for i in range(len(word)):
-                if(word.find(letter) != -1):
-                    if(word[i] == letter):
-                        letter_show.append(letter)
-                    else:
-                        letter_show.append("_")
-                else:
-                    cont += 1
-                    
-            print(letter_show)  
-            
-        return print(letter_show)
+        self.word = self.create_wordList()
+        game_over = False
+        while not game_over:
+            self.drawing.print_parachute()
+            self.drawing.print_person()
+            self.word.show_hidden_word()
+            guessed_correctly = self.word.check_guess(self.player.guess())
+            if (not guessed_correctly):
+                game_over = self.drawing.remove_parachute()
+            if game_over:
+                print("\nOh no!  Your parachute is gone!  You lose!")
+                self.drawing.kill_person()
+            if (self.word.is_word_completely_guessed()):
+                print("\nCongratulations!  You guessed the word!")
+                self.word.show_hidden_word()
+                print("\n")
+                game_over = True           
            
         
         

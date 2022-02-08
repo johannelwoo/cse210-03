@@ -20,14 +20,18 @@ class Drawing():
         print(self.parachute)
         
     def remove_parachute(self):
+        parachute_gone = False
         self.parachute = self.parachute[7:]
         if len(self.parachute) <= 15:
             self.parachute = self.parachute[4:]
-        # print(self.parachute)
-        # print(self.person)
-        
+        print (len(self.parachute))
+        if len(self.parachute) == 0:
+            parachute_gone = True
+        return(parachute_gone)
+      
     def print_person(self):
         print(self.person)
         
     def kill_person(self):
         self.person = ('    x\n   /|\\\n   / \\')
+        self.print_person()
