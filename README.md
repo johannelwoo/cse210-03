@@ -29,7 +29,7 @@ Purpose: To manage the game by selecting a work, draying the jumper and asking t
 Attributes/purpose
   listofwords - contains a list of Word objects, each with a word to guess
   player - contains a Player
-  drawing - contains a drawing
+  drawing - contains a Drawing
 
 Methods/purpose
   create_wordlist() - create a list of Word objects
