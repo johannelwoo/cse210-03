@@ -11,3 +11,8 @@ class Player:
         self.letter_guess = input("Guess a letter [a-z]: ")
         return (self.letter_guess)
 
+    def play_again(self):
+        """Get user input for whether the player wants to play again."""
+        self.play_again_choice = input("Play again [y/n]? ")
+        return (self.play_again_choice)
+

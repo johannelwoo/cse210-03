@@ -22,10 +22,19 @@ class Word:
 
     def show_hidden_word(self): 
         #Put the hidden word inside the variable word and display that
-        word = ""
+        word = "\n"
         for letter in range(len(self._word_hidden)):
             word += self._word_hidden[letter]
         print(word)               
+        print()
+
+    def show_word(self): 
+        #Show the word the player has been trying to guess
+        word = "\n"
+        for letter in range(len(self.letters)):
+            word += self.letters[letter]
+        print(word)               
+        print()
 
     def check_guess(self, guess):
         #take a parametrer and use it to check if the guess word is in the letters list

@@ -22,28 +22,53 @@ Methods/purpose
         self.word = Word("")
 
     def create_wordList(self):
-        self._wordlist_of_words = [Word('developement'), Word('python'), Word('hilo'), Word('arguments'), Word('program')]
+        self._wordlist_of_words = [
+            Word('developement'), 
+            Word('python'), 
+            Word('student'), 
+            Word('arguments'), 
+            Word('teamwork'), 
+            Word('encapsulate'), 
+            Word('abstract'), 
+            Word('jumper'), 
+            Word('cooperation'), 
+            Word('variable'), 
+            Word('method'), 
+            Word('classes'), 
+            Word('objects'), 
+            Word('program')
+            ]
         return random.choice(self._wordlist_of_words)
 
     def play_game(self):
         #print(self.word.show_hidden_word(self.create_wordList()))
         self.word = self.create_wordList()
-        game_over = False
-        while not game_over:
-            self.drawing.print_parachute()
-            self.drawing.print_person()
-            self.word.show_hidden_word()
-            guessed_correctly = self.word.check_guess(self.player.guess())
-            if (not guessed_correctly):
-                game_over = self.drawing.remove_parachute()
-            if game_over:
-                print("\nOh no!  Your parachute is gone!  You lose!")
-                self.drawing.kill_person()
-            if (self.word.is_word_completely_guessed()):
-                print("\nCongratulations!  You guessed the word!")
+        play_again = "y"
+
+        while play_again == "y":
+            game_over = False
+            while not game_over:
+                self.drawing.print_parachute()
+                self.drawing.print_person()
                 self.word.show_hidden_word()
-                print("\n")
-                game_over = True           
+                guessed_correctly = self.word.check_guess(self.player.guess())
+                if (not guessed_correctly):
+                    game_over = self.drawing.remove_parachute()
+                if game_over:
+                    print("\nOh no!  Your parachute is gone!  You lose!")
+                    self.drawing.kill_person()
+                    print("The word was:")
+                    self.word.show_word()
+                if (self.word.is_word_completely_guessed()):
+                    print("\nCongratulations!  You guessed the word!\n")
+                    print("The word was:")
+                    self.word.show_hidden_word()
+                    print("\n")
+                    game_over = True           
+            play_again = self.player.play_again()
+            if play_again == "y":
+                self.drawing.reset_drawing()
+                self.word = random.choice(self._wordlist_of_words)
            
         
         
