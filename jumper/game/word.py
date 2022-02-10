@@ -1,8 +1,11 @@
-
+"""
+Word Class encapulates all attributes and methods needed to handle the word in this jumper Game
+"""
 
 class Word: 
  
     def __init__(self, random_word):
+        # __init__ contructor is the method that initializes all attributes
                 
         self.letters = []
         self._word_hidden = []
@@ -14,14 +17,15 @@ class Word:
         #take the list of letters from the random word and makes a list of underscore
         for letter in self.letters:
             letter = "_"
-            #stablish a list of underscore with no commas.
+            #stablish a list of underscores to match the word.
             self._word_hidden.append(letter)
     
     def is_word_completely_guessed(self):
+        # This method lets the Host know that the word has been completely guessed.
         return(self.word_completely_guessed)
 
     def show_hidden_word(self): 
-        #Put the hidden word inside the variable word and display that
+        # Display the hidden word
         word = "\n"
         for letter in range(len(self._word_hidden)):
             word += self._word_hidden[letter]
@@ -29,7 +33,7 @@ class Word:
         print()
 
     def show_word(self): 
-        #Show the word the player has been trying to guess
+        # Display the word the player has been trying to guess
         word = "\n"
         for letter in range(len(self.letters)):
             word += self.letters[letter]
@@ -37,7 +41,7 @@ class Word:
         print()
 
     def check_guess(self, guess):
-        #take a parametrer and use it to check if the guess word is in the letters list
+        #take the letter passed as a parameter and see if it is in the hidden word
         guessed_correctly = False
         position = 0
         for i in self.letters:

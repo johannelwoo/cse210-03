@@ -1,4 +1,4 @@
-# New game
+
 from game.player import Player
 from game.drawing import Drawing
 from game.word import Word
@@ -6,22 +6,31 @@ from game.word import Word
 import random
 
 class Host:
-    """ Purpose: To manage the game by selecting a work, draying the jumper and asking the player for guesses
-Attributes/purpose
-	listofwords
-	player
-	drawing
-Methods/purpose
-	create_wordlist()
-	play_game()"""
+    """ 
+    Host Class
+    Purpose: To manage the game by selecting a word, drawing the jumper and asking the player to guess the word a letter at a time.  
+             If the guessed letter is not in the word, part of the parachute is removed. If the word is guessed before the patachute 
+             disappears, the player wins. if not, the player loses.
+        
+    Attributes/purpose
+	    listofwords
+    	player
+	    drawing
+
+    Methods/purpose
+	    create_wordlist()
+	    play_game()
+    """
 
     def __init__(self):
+        # __init__ is a constuctor that initializes the class attributes
         self._wordlist_of_words = []
         self.player = Player()
         self.drawing = Drawing()
         self.word = Word("")
 
     def create_wordList(self):
+        # This method establishes a wordlist from which a word is chosen at random.
         self._wordlist_of_words = [
             Word('developement'), 
             Word('python'), 
@@ -41,7 +50,7 @@ Methods/purpose
         return random.choice(self._wordlist_of_words)
 
     def play_game(self):
-        #print(self.word.show_hidden_word(self.create_wordList()))
+        # This method plays the game.  It loops until the game is won or lost and loops while the player wants to keep playing.
         self.word = self.create_wordList()
         play_again = "y"
 

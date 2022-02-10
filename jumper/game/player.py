@@ -1,4 +1,6 @@
-""" This class creates the user input to have the user enter their guess for the secret word."""
+""" 
+Player Class - This class creates the user input to have the user enter their guess for the secret word.
+"""
 
 class Player:
 
